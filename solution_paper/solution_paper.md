@@ -1,7 +1,7 @@
 # User Modeling and Personalised Recommendation for Nigerian Users Using LLM Agents
 
 **DSN x BCT LLM Agent Challenge**
-**Submission Deadline: 24 May 2026**
+
 
 ---
 
