@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: dsn-bct-task-a
+    runtime: docker
+    dockerfilePath: ./task_a/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+
+  - type: web
+    name: dsn-bct-task-b
+    runtime: docker
+    dockerfilePath: ./task_b/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    plan: free
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
