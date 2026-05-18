@@ -10,7 +10,7 @@ COPY task_b/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Pre-download embedding model at build time (avoids runtime cold-start)
-RUN python -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2')"
+RUN python -c "from fastembed import TextEmbedding; list(TextEmbedding('sentence-transformers/all-MiniLM-L6-v2').embed(['warmup']))"
 
 COPY shared /app/shared
 COPY task_b /app/task_b

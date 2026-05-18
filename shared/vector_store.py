@@ -12,14 +12,14 @@ from typing import Any
 try:
     import faiss
     import numpy as np
-    from sentence_transformers import SentenceTransformer
+    from fastembed import TextEmbedding
     FAISS_AVAILABLE = True
 except ImportError:
     FAISS_AVAILABLE = False
 
 
 class ItemVectorStore:
-    def __init__(self, model_name: str = "all-MiniLM-L6-v2"):
+    def __init__(self, model_name: str = "sentence-transformers/all-MiniLM-L6-v2"):
         self.items: list[dict[str, Any]] = []
         self.model_name = model_name
         self._model = None
@@ -27,7 +27,7 @@ class ItemVectorStore:
 
     def _get_model(self):
         if self._model is None and FAISS_AVAILABLE:
-            self._model = SentenceTransformer(self.model_name)
+            self._model = TextEmbedding(self.model_name)
         return self._model
 
     def _item_to_text(self, item: dict[str, Any]) -> str:
@@ -46,8 +46,7 @@ class ItemVectorStore:
             return
         model = self._get_model()
         texts = [self._item_to_text(item) for item in items]
-        embeddings = model.encode(texts, show_progress_bar=False)
-        embeddings = np.array(embeddings, dtype="float32")
+        embeddings = np.array(list(model.embed(texts)), dtype="float32")
         faiss.normalize_L2(embeddings)
         dim = embeddings.shape[1]
         self._index = faiss.IndexFlatIP(dim)
@@ -68,8 +67,7 @@ class ItemVectorStore:
     def _faiss_search(self, query: str, top_k: int, candidates: list[dict[str, Any]]) -> list[dict[str, Any]]:
         import numpy as np
         model = self._get_model()
-        q_emb = model.encode([query], show_progress_bar=False)
-        q_emb = np.array(q_emb, dtype="float32")
+        q_emb = np.array(list(model.embed([query])), dtype="float32")
         faiss.normalize_L2(q_emb)
 
         # Search full index, then filter to candidates
