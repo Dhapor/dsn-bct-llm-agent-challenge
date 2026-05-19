@@ -126,6 +126,25 @@ def example():
     }
 
 
+@app.get("/test")
+def test_live():
+    persona = {
+        "user_id": "u_chidi", "name": "Chidi", "location": "Lagos, Nigeria",
+        "preferences": ["spicy food", "good service", "value for money"],
+        "review_history": [
+            {"item": "Chicken Republic", "rating": 3.5, "review": "The chicken was okay but e take time small. Price reasonable sha.", "category": "restaurant"},
+            {"item": "Yellow Chilli", "rating": 4.5, "review": "E sweet me die! The oxtail pepper soup na the best in Lagos.", "category": "restaurant"},
+        ],
+    }
+    product = {
+        "item_id": "ng_r003", "name": "Kilimanjaro Restaurant", "category": "restaurant",
+        "cuisine": "Nigerian", "description": "Known for grills, suya and Nigerian continental dishes.",
+        "price_range": "$$", "location": "Lekki, Lagos", "tags": ["nigerian", "grills", "suya"],
+    }
+    result = generate_review(persona, product)
+    return {"note": "Live test — real Claude output", **result}
+
+
 @app.post("/generate-review", response_model=ReviewResponse)
 def generate_review_endpoint(request: ReviewRequest):
     try:
