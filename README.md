@@ -22,11 +22,11 @@ Two AI agents that model how Nigerian users behave online and recommend things t
 
 ---
 
-## What We Built
+## What I Built
 
 **Task A** takes a user's review history and generates a review they would likely write for a new item, including the star rating. The goal was not just to predict a number but to capture how that specific person writes, what they notice, and how they express it.
 
-**Task B** takes a user profile and returns a ranked list of personalised recommendations. Instead of simple collaborative filtering, we built an agentic workflow where the system searches, evaluates candidates, and reasons about fit before committing to a final list.
+**Task B** takes a user profile and returns a ranked list of personalised recommendations. Instead of simple collaborative filtering, I built an agentic workflow where the system searches, evaluates candidates, and reasons about fit before committing to a final list.
 
 Both agents are containerised and can be started with one command.
 
