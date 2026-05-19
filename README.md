@@ -6,6 +6,22 @@ Two AI agents that model how Nigerian users behave online and recommend things t
 
 ---
 
+## Live Agents
+
+| Agent | Interactive Docs | Quick Test |
+|---|---|---|
+| Task A — User Modeling | [/docs](https://dsn-bct-task-a-v9ik.onrender.com/docs) | [/test](https://dsn-bct-task-a-v9ik.onrender.com/test) |
+| Task B — Recommendation | [/docs](https://dsn-bct-task-b-11lm.onrender.com/docs) | [/catalog](https://dsn-bct-task-b-11lm.onrender.com/catalog) |
+
+> **Note:** Services are on Render's free tier and may take 30–60 seconds to wake up on first request.
+
+### Quickest way to see them working
+
+- **Task A:** open `https://dsn-bct-task-a-v9ik.onrender.com/test` in your browser — returns a real Claude-generated review instantly, no setup needed.
+- **Task B:** open `https://dsn-bct-task-b-11lm.onrender.com/docs`, click **POST /recommend → Try it out**, paste the example payload, click Execute.
+
+---
+
 ## What We Built
 
 **Task A** takes a user's review history and generates a review they would likely write for a new item, including the star rating. The goal was not just to predict a number but to capture how that specific person writes, what they notice, and how they express it.
@@ -153,5 +169,10 @@ The system was designed around the Yelp Open Dataset, Amazon Reviews, and Goodre
 
 FastAPI generates interactive documentation automatically.
 
+**Live (deployed):**
+- Task A: https://dsn-bct-task-a-v9ik.onrender.com/docs
+- Task B: https://dsn-bct-task-b-11lm.onrender.com/docs
+
+**Local:**
 - Task A: http://localhost:8001/docs
 - Task B: http://localhost:8002/docs
