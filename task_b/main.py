@@ -18,7 +18,7 @@ from agents.recommender_agent import get_recommendations
 
 app = FastAPI(
     title="DSN×BCT Task B — Recommendation API",
-    description="Agentic personalised recommendations powered by Claude tool use.",
+    description="Agentic personalised recommendation system using iterative search and reasoning to match items to individual Nigerian user profiles.",
     version="1.0.0",
 )
 

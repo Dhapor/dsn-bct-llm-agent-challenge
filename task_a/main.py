@@ -15,7 +15,7 @@ from agents.review_generator import generate_review
 
 app = FastAPI(
     title="DSN×BCT Task A — User Modeling API",
-    description="Simulates user reviews by building behaviorally faithful user profiles powered by Claude.",
+    description="Generates behaviorally faithful user reviews and ratings based on individual user history and Nigerian cultural context.",
     version="1.0.0",
 )
 
@@ -124,25 +124,6 @@ def example():
             "tags": ["nigerian", "grills", "suya", "lekki"],
         },
     }
-
-
-@app.get("/test")
-def test_live():
-    persona = {
-        "user_id": "u_chidi", "name": "Chidi", "location": "Lagos, Nigeria",
-        "preferences": ["spicy food", "good service", "value for money"],
-        "review_history": [
-            {"item": "Chicken Republic", "rating": 3.5, "review": "The chicken was okay but e take time small. Price reasonable sha.", "category": "restaurant"},
-            {"item": "Yellow Chilli", "rating": 4.5, "review": "E sweet me die! The oxtail pepper soup na the best in Lagos.", "category": "restaurant"},
-        ],
-    }
-    product = {
-        "item_id": "ng_r003", "name": "Kilimanjaro Restaurant", "category": "restaurant",
-        "cuisine": "Nigerian", "description": "Known for grills, suya and Nigerian continental dishes.",
-        "price_range": "$$", "location": "Lekki, Lagos", "tags": ["nigerian", "grills", "suya"],
-    }
-    result = generate_review(persona, product)
-    return {"note": "Live test — real Claude output", **result}
 
 
 @app.post("/generate-review", response_model=ReviewResponse)
